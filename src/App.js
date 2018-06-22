@@ -3,6 +3,7 @@ import Header from './Header';
 import Completed from './Completed';
 import PositionedSnackBar from './PositionedSnackBar';
 import TodoItems from './TodoItems.js';
+import InputTaker from './InputTaker.js'
 class App extends Component{
     constructor(props) {
         super(props);
@@ -63,11 +64,7 @@ class App extends Component{
             <div className="MainClass">
             <Header />
             <Completed />
-            <input
-            type="text"
-            placeholder="Hey! Type something to note"
-            ref={a => (this.inputElement = a)}
-         />
+            <InputTaker />
           <button type="submit" onClick={this.AddElement}>
             Add To List
           </button>
