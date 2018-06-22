@@ -1,6 +1,6 @@
 import React,{ Component, Fragment } from 'react';
 import MenuAppBar from './MenuAppBar';
-import Typography from '@material-ui/core/Typography';
+
 
 class Header extends Component{
 
@@ -19,9 +19,7 @@ render(){
   };
     return(
         <Fragment>
-        <Typography variant="display3" gutterBottom>
-        My Tasks
-      </Typography>
+        
      <MenuAppBar />
         </Fragment>
     )

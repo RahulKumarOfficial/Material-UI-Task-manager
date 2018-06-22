@@ -31,7 +31,8 @@ class InputTaker extends React.Component{
       }
       AddElement(e) {
         console.log("Button add is clicked");
-        var newItem = {
+        if(this.state.textFieldValue!="")
+        {var newItem = {
           text: this.state.textFieldValue,
           key: Date.now()
         };
@@ -46,7 +47,7 @@ class InputTaker extends React.Component{
         });
         console.log(this.state.items);
         
-        e.preventDefault();
+        e.preventDefault();}
       }
       deleteItem(text){
         var filteredItems = this.state.items.filter(function(item){
