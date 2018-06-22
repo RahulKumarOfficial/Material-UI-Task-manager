@@ -3,7 +3,7 @@ import React,{Component} from "react";
 class TodoItems extends Component{
     constructor(props){
         super(props);
-
+       
         this.createTasks= this.createTasks.bind(this);
         
     }
@@ -40,6 +40,7 @@ delete(text){
     
         var todoEntries = this.props.entries;
         var listItems = todoEntries.map(this.createTasks);
+        console.log(listItems);
         return(
             <ul>
             {listItems}

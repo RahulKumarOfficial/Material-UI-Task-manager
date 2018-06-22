@@ -3,6 +3,7 @@ import Button from '@material-ui/core/Button';
 import Snackbar from '@material-ui/core/Snackbar';
 
 class PositionedSnackbar extends React.Component {
+   
   state = {
     open: false,
     vertical: null,
