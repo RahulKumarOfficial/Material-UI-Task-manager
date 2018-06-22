@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
+import TodoItems from './TodoItems.js';
 const styles = theme =>({
     FormControl:{
       width:500
@@ -91,6 +92,10 @@ class InputTaker extends React.Component{
           
        </center>
             </form>
+            <TodoItems entries = {this.state.items}
+         delete={this.deleteItem}
+         update={this.updateItem}
+         />
             </div>
 
         )
