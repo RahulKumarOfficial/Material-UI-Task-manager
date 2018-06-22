@@ -7,10 +7,20 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import CommentIcon from '@material-ui/icons/Comment';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 class Completed extends Component{
 render(){
     return (
         <div>
+
+        <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography variant="title">Completed</Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
         <List>
         {[0, 1, 2, 3].map(value => (
           <ListItem
@@ -26,13 +36,15 @@ render(){
             />
             <ListItemText primary={`Line item ${value + 1}`} />
             <ListItemSecondaryAction>
-              <IconButton aria-label="Comments">
-                <CommentIcon />
-              </IconButton>
+              
             </ListItemSecondaryAction>
           </ListItem>
         ))}
       </List>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+
+       
         </div>
     )
 }
