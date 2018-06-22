@@ -4,6 +4,10 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
+const Trash = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>								
 
 class TodoItems extends Component{
     constructor(props){
@@ -17,11 +21,13 @@ class TodoItems extends Component{
         this.state={
             inputValue : item.text
         };
+        // <button onClick={()=>this.delete(item.text)}>Delete</button>
+        // <button onClick = {()=>this.update(item.text)}>Update</button>
+
+       
         
-    
-        return( <div><li><input type="text" value = {this.state.inputValue} onChange={event=>this.setState({inputValue:event.target.value})} id="One"/>
-        <button onClick={()=>this.delete(item.text)}>Delete</button>
-        <button onClick = {()=>this.update(item.text)}>Update</button>
+        return( <div><li> <Typography variant="title" gutterBottom>{this.state.inputValue}<IconButton><DeleteIcon /></IconButton></Typography>
+        
         </li>
         </div>)
      
