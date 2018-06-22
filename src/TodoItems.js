@@ -1,4 +1,9 @@
-import React,{Component} from "react";
+import React,{ Component } from 'react';
+import Typography from '@material-ui/core/Typography';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 class TodoItems extends Component{
     constructor(props){
@@ -42,9 +47,18 @@ delete(text){
         var listItems = todoEntries.map(this.createTasks);
         console.log(listItems);
         return(
+            <ExpansionPanel>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography variant="title">To-do List here</Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
             <ul>
             {listItems}
             </ul>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+    
+           
         )
     }
 }
