@@ -6,7 +6,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import Completed from './Completed';
+const ico = <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+<path d="M0 0h24v24H0z" fill="none"/>
+<path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"/>
+</svg>
 
 const styles = {
   root: {
@@ -47,30 +51,15 @@ class MenuAppBar extends React.Component {
     return (
       <div className={classes.root}>
 
-        <BottomAppBar position="Bottom" >
-          <Toolbar>
+        <BottomAppBar position="bottom" color="default">
+          <Toolbar >
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon />
             </IconButton>
             <Typography variant="title" color="inherit" className={classes.flex}>
               
             </Typography>
-            {auth && (
-              <div>
-                <IconButton
-                  aria-owns={open ? 'menu-appbar' : null}
-                  aria-haspopup="true"
-                  onClick={this.handleMenu}
-                  color="inherit"
-                >
-                  <AccountCircle />
-                </IconButton>
-                
-                <i class="material-icons">more_vert</i>
-                
-                
-              </div>
-            )}
+            {ico}
           </Toolbar>
         </BottomAppBar>
       </div>

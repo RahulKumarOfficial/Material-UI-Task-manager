@@ -24,7 +24,7 @@ class Content extends Component{
               tabIndex={-1}
               disableRipple
             />
-            <ListItemText primary={`Line item ${value + 1}`} />
+            <ListItemText primary={`Content ${value + 1}`} />
             <ListItemSecondaryAction>
               
             </ListItemSecondaryAction>
