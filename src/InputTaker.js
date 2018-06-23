@@ -1,8 +1,7 @@
 import React from 'react';
 import Select from '@material-ui/core/Select';
-import TextField from '@material-ui/core/TextField';
+
 import { withStyles } from '@material-ui/core/styles';
-import FormControl from '@material-ui/core/FormControl';
 
 import Button from '@material-ui/core/Button';
 import TodoItems from './TodoItems.js';
@@ -119,17 +118,8 @@ class InputTaker extends React.Component{
             <div>
             <form>
             <center>
-            <TextField
-            value={this.state.textFieldValue}
-            label="Enter the Task!"
-           onChange ={this.takeInput}
-            className = {FormControl}
-            
-            margin="normal"
-          />
-          <div id="divfix">
-          
-          </div>
+           
+         
           
           
        </center>

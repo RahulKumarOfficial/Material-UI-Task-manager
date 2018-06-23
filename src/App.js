@@ -7,7 +7,15 @@ import InputTaker from './InputTaker.js';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import './positionBtn.css';
 import './App.css';
+const styles = theme =>({
+  FormControl:{
+    width:500
+  }
+})
 class App extends Component{
    
 constructor(props){
@@ -33,7 +41,8 @@ this.state = {
         if(this.state.textFieldValue!="")
         
         {
-          this.handleClick();
+          console.log("inside function");
+          // this.handleClick();
           var newItem = {
           text: this.state.textFieldValue,
           key: Date.now()
@@ -82,6 +91,14 @@ this.state = {
             <Typography variant="display3" gutterBottom position="sticky">
         My Tasks
       </Typography>
+      <TextField
+      value={this.state.textFieldValue}
+      label="Enter the Task!"
+     onChange ={this.takeInput}
+      className = {FormControl}
+      
+      margin="normal"
+    />
       <TodoItems entries = {this.state.items}
       delete={this.deleteItem}
       update={this.updateItem}
@@ -92,10 +109,13 @@ this.state = {
            <InputTaker />
            <Header />
            </div>
-           <Button variant="contained" onClick={this.AddElement} mini color="primary" >
+           <div id="divfix">
+           <Button variant="contained" onClick={this.AddElement} mini color="primary" id="rounded" >
            Add the text here
            <AddIcon />
        </Button> 
+           </div>
+           
             </div>
         )
     }
