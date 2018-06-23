@@ -14,10 +14,11 @@ class App extends Component{
             <Typography variant="display3" gutterBottom position="sticky">
         My Tasks
       </Typography>
-            <InputTaker />
+           
       
             
            <div className="footer">
+           <InputTaker />
            <Header />
            </div>
             

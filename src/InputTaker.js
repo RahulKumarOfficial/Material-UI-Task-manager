@@ -6,13 +6,46 @@ import FormControl from '@material-ui/core/FormControl';
 import AddIcon from '@material-ui/icons/Add';
 import Button from '@material-ui/core/Button';
 import TodoItems from './TodoItems.js';
+import Snackbar from '@material-ui/core/Snackbar';
 const styles = theme =>({
     FormControl:{
       width:500
-    }
+    },
+    fabMoveUp: {
+      transform: 'translate3d(0, -46px, 0)',
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.enteringScreen,
+        easing: theme.transitions.easing.easeOut,
+      }),
+    },
+    fabMoveDown: {
+      transform: 'translate3d(0, 0, 0)',
+      transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.leavingScreen,
+        easing: theme.transitions.easing.sharp,
+      }),
+    },
+    snackbar: {
+      position: 'absolute',
+    },
+    snackbarContent: {
+      width: 360,
+    },
+  
   })
   
 class InputTaker extends React.Component{
+  state = {
+    open: false,
+  }
+  handleClick = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+  
    constructor(props) {
         super(props);
         this.state = {
@@ -24,15 +57,20 @@ class InputTaker extends React.Component{
         this.updateItem = this.updateItem.bind(this)
       }
 
+      
       takeInput = (e) =>{
         this.setState({
             textFieldValue: e.target.value
         });
       }
       AddElement(e) {
+       
         console.log("Button add is clicked");
         if(this.state.textFieldValue!="")
-        {var newItem = {
+        
+        {
+          this.handleClick();
+          var newItem = {
           text: this.state.textFieldValue,
           key: Date.now()
         };
@@ -76,7 +114,8 @@ class InputTaker extends React.Component{
     }
     
     render(){
-        return(
+      const { open } = this.state;
+            return(
             <div>
             <form>
             <center>
@@ -87,11 +126,29 @@ class InputTaker extends React.Component{
             className = {FormControl}
             
             margin="normal"
-          /><Button variant="fab"  onClick={this.AddElement} mini>
+          />
+          <div id="divfix">
+          <Button variant="contained" onClick={this.AddElement} mini color="primary" >
+          Add the text here
           <AddIcon />
       </Button>
+          </div>
+          
           
        </center>
+       <Snackbar
+       open ={open}
+       autoHideDuration={1000}
+       onClose={this.handleClose}
+       
+       message={<span>Nice! Successfully Added the list</span>}
+       action={
+         <Button color="inherit" size="small" onClick={this.handleClose}>
+           Undo
+         </Button>
+       }
+      
+     />
             </form>
             <TodoItems entries = {this.state.items}
          delete={this.deleteItem}
