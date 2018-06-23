@@ -3,7 +3,7 @@ import Select from '@material-ui/core/Select';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
 import FormControl from '@material-ui/core/FormControl';
-import AddIcon from '@material-ui/icons/Add';
+
 import Button from '@material-ui/core/Button';
 import TodoItems from './TodoItems.js';
 import Snackbar from '@material-ui/core/Snackbar';
@@ -128,10 +128,7 @@ class InputTaker extends React.Component{
             margin="normal"
           />
           <div id="divfix">
-          <Button variant="contained" onClick={this.AddElement} mini color="primary" >
-          Add the text here
-          <AddIcon />
-      </Button>
+          
           </div>
           
           
@@ -150,10 +147,7 @@ class InputTaker extends React.Component{
       
      />
             </form>
-            <TodoItems entries = {this.state.items}
-         delete={this.deleteItem}
-         update={this.updateItem}
-         />
+           
             </div>
 
         )
