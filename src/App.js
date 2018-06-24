@@ -17,6 +17,10 @@ import PropTypes from 'prop-types';
 
 
 const styles = theme => ({
+  FormControl:{
+    width:500
+  },
+
   paper: {
     position: 'absolute',
     width: theme.spacing.unit * 50,
@@ -86,18 +90,21 @@ constructor(props){
       var newItem = {
       text: this.state.textFieldValue,
       key: Date.now()
-    };
-
-    let {text} = newItem;
-    
-    this.state.textFieldValue="";
-    this.setState(prevState =>{
-      return{
-      items:prevState.items.concat(newItem)
       };
-    });
-    console.log(this.state.items);
-    e.preventDefault();}
+
+      let {text} = newItem;
+    
+        this.state.textFieldValue="";
+        this.setState(prevState =>{
+          return{
+          items:prevState.items.concat(newItem)
+          };
+        });
+        console.log(this.state.items);
+        e.preventDefault();
+    }
+
+    this.handleClose();
   }
   
   
@@ -136,8 +143,27 @@ constructor(props){
                 onClose={this.handleClose}
               >
                 <div style={getModalStyle()} className={classes.paper}>
-                  <Typography variant="title" id="modal-title">Text in a modal</Typography>
-                 
+                  <Typography variant="title" id="modal-title">Add the task
+                  <form className={classes.container} noValidate autoComplete="off">
+                    <TextField
+                      id="name"
+                      value={this.state.textFieldValue}
+                      label="Enter the Task!"
+                      onChange ={this.takeInput}
+                      margin="normal"
+                      className = {FormControl}
+                    />
+                    <Button 
+                    variant="fab" 
+                    color="primary" 
+                    onClick={this.AddElement} 
+                    mini
+                    className = {FormControl}
+                    >
+                      <AddIcon />
+                    </Button>
+                  </form>
+                  </Typography>                 
                   </div>
             </Modal>           
           </div>

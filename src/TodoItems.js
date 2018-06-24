@@ -26,7 +26,7 @@ class TodoItems extends Component{
 
        
         
-        return( <div><li> <Typography variant="title" gutterBottom>{this.state.inputValue}<IconButton><DeleteIcon /></IconButton></Typography>
+        return( <div><li> <Typography variant="title" gutterBottom>{this.state.inputValue}<IconButton onClick={()=>this.delete(item.text)}><DeleteIcon /></IconButton></Typography>
         
         </li>
         </div>)
