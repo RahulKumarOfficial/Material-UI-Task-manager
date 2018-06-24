@@ -1,20 +1,26 @@
 import React,{ Component, Fragment } from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import MenuAppBar from './MenuAppBar';
+
+
 class Header extends Component{
 
 render(){
+  const styles = {
+    root: {
+      flexGrow: 1,
+    },
+    flex: {
+      flex: 1,
+    },
+    menuButton: {
+      marginLeft: -12,
+      marginRight: 20,
+    },
+  };
     return(
         <Fragment>
-        <AppBar position="relative" color="default">
-        <Toolbar>
-        <Typography variant="display3" color="inherit"></Typography>
-          <Typography variant="display3" color="inherit">
-            My Tasks
-          </Typography>
-        </Toolbar>
-      </AppBar>
+        
+     <MenuAppBar />
         </Fragment>
     )
 }

@@ -1,0 +1,17 @@
+#divfix {
+    bottom: 40 ;
+    text-align: center;
+    align-content: center;
+    align-self: center;
+    left:20%;
+    margin-left: 20%;
+    margin-right: 20%;
+    position: fixed;
+    
+     }
+
+#rounded{
+    border-radius: 10%;
+   
+
+}
