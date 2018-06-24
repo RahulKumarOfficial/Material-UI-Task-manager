@@ -9,6 +9,9 @@ import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
+import Paper from '@material-ui/core/Paper';
+import Fade from '@material-ui/core/Fade';
+import Image from 'material-ui-image'
 import './positionBtn.css';
 import './App.css';
 const styles = theme =>({
@@ -17,12 +20,16 @@ const styles = theme =>({
   }
 })
 class App extends Component{
-   
+
+  handleChange = () => {
+    this.setState({ checked: !this.state.checked });
+  };
 constructor(props){
     super(props);
 this.state = {
           items: [],
-          textFieldValue : ''
+          textFieldValue : '',
+          checked:false
         };
  this.AddElement = this.AddElement.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
@@ -36,11 +43,25 @@ this.state = {
         });
       }
       AddElement(e) {
-       
+        <form>
+     
+        <Paper elevation={4} >
+        <TextField
+    value={this.state.textFieldValue}
+    label="Enter the Task!"
+   onChange ={this.takeInput}
+    className = {FormControl}
+    
+    margin="normal"
+  />
+        </Paper>
+      
+      </form>
         console.log("Button add is clicked");
         if(this.state.textFieldValue!="")
         
         {
+          
           console.log("inside function");
           // this.handleClick();
           var newItem = {
@@ -91,14 +112,7 @@ this.state = {
             <Typography variant="display3" gutterBottom position="sticky">
         My Tasks
       </Typography>
-      <TextField
-      value={this.state.textFieldValue}
-      label="Enter the Task!"
-     onChange ={this.takeInput}
-      className = {FormControl}
       
-      margin="normal"
-    />
       <TodoItems entries = {this.state.items}
       delete={this.deleteItem}
       update={this.updateItem}
@@ -111,11 +125,11 @@ this.state = {
            </div>
            <div id="divfix">
            <Button variant="contained" onClick={this.AddElement} mini color="primary" id="rounded" >
-           Add the text here
+           Add a new task
            <AddIcon />
        </Button> 
            </div>
-           
+         
             </div>
         )
     }
