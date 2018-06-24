@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import TodoShow from './TodoShow';
-import PositionedSnackBar from './PositionedSnackBar';
 import TodoItems from './TodoItems.js';
 import InputTaker from './InputTaker.js';
 import Typography from '@material-ui/core/Typography';
@@ -10,128 +8,143 @@ import AddIcon from '@material-ui/icons/Add';
 import TextField from '@material-ui/core/TextField';
 import FormControl from '@material-ui/core/FormControl';
 import Paper from '@material-ui/core/Paper';
-import Fade from '@material-ui/core/Fade';
-import Image from 'material-ui-image'
+import Modal from '@material-ui/core/Modal';
 import './positionBtn.css';
 import './App.css';
-const styles = theme =>({
-  FormControl:{
-    width:500
-  }
-})
+import { withStyles } from '@material-ui/core/styles';
+
+import PropTypes from 'prop-types';
+
+
+const styles = theme => ({
+  paper: {
+    position: 'absolute',
+    width: theme.spacing.unit * 50,
+    backgroundColor: theme.palette.background.paper,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing.unit * 4,
+  },
+});
+
+
+
+
+
+function getModalStyle() {
+  const bottom= 0;
+  const left =0;
+  const right =20;
+  
+
+  return {
+    bottom: `${bottom}%`,
+    left:`${left}%`,
+    right:`${left}%`,
+    transform: `translate(-${bottom}%,-${left}%,-${right}%)`,
+  };
+}
+
+
 class App extends Component{
+ 
+
+constructor(props){
+    super(props);
+    this.state = {
+      items: [],
+      textFieldValue : '',
+      checked:false,
+    };
+    
+    this.AddElement = this.AddElement.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
+    
+  } 
 
   handleChange = () => {
     this.setState({ checked: !this.state.checked });
   };
-constructor(props){
-    super(props);
-this.state = {
-          items: [],
-          textFieldValue : '',
-          checked:false
-        };
- this.AddElement = this.AddElement.bind(this);
-        this.deleteItem = this.deleteItem.bind(this);
-        this.updateItem = this.updateItem.bind(this)
 
-}
+  handleOpen = () => {
+    this.setState({ open: true });   
+  };
 
- takeInput = (e) =>{
-        this.setState({
-            textFieldValue: e.target.value
-        });
-      }
-      AddElement(e) {
-        <form>
-     
-        <Paper elevation={4} >
-        <TextField
-    value={this.state.textFieldValue}
-    label="Enter the Task!"
-   onChange ={this.takeInput}
-    className = {FormControl}
-    
-    margin="normal"
-  />
-        </Paper>
-      
-      </form>
-        console.log("Button add is clicked");
-        if(this.state.textFieldValue!="")
-        
-        {
-          
-          console.log("inside function");
-          // this.handleClick();
-          var newItem = {
-          text: this.state.textFieldValue,
-          key: Date.now()
-        };
-        let {text} = newItem;
-        
-        this.state.textFieldValue="";
-        this.setState(prevState =>{
-    
-          return{
-            items:prevState.items.concat(newItem)
-          };
-        });
-        console.log(this.state.items);
-        
-        e.preventDefault();}
-      }
-      deleteItem(text){
-        var filteredItems = this.state.items.filter(function(item){
-          return (item.text!==text);
-        });
-        this.setState({
-            items:filteredItems
-        });
-    }
-    updateItem(text){
-      //console.log("Text passed in App.js: "+text);
-      var input  = window.prompt("Enter the new text here: ");
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
+  takeInput = (e) =>{
+    this.setState({
+    textFieldValue: e.target.value
+    });
+  }
+  
+  AddElement(e) {
+    console.log("Button add is clicked");
+    if(this.state.textFieldValue!=""){
+      console.log("inside function");
       var newItem = {
-        text : input,
-        key : Date.now()
+      text: this.state.textFieldValue,
+      key: Date.now()
+    };
+
+    let {text} = newItem;
+    
+    this.state.textFieldValue="";
+    this.setState(prevState =>{
+      return{
+      items:prevState.items.concat(newItem)
       };
+    });
+    console.log(this.state.items);
+    e.preventDefault();}
+  }
+  
+  
+  deleteItem(text){
+    var filteredItems = this.state.items.filter(function(item){
+    return (item.text!==text);
+    });
     
-      this.deleteItem(text);
-      
-      this.setState(prevState =>{
-    
-        return{
-          items:prevState.items.concat(newItem)
-        };
+    this.setState({
+      items:filteredItems
       });
-    }
+  }
+    
     render(){
-        return(
-            <div className="MainClass">
-            <Typography variant="display3" gutterBottom position="sticky">
-        My Tasks
-      </Typography>
-      
-      <TodoItems entries = {this.state.items}
-      delete={this.deleteItem}
-      update={this.updateItem}
-      />
-      
-            
-           <div className="footer">
-           <InputTaker />
-           <Header />
-           </div>
-           <div id="divfix">
-           <Button variant="contained" onClick={this.AddElement} mini color="primary" id="rounded" >
-           Add a new task
-           <AddIcon />
-       </Button> 
-           </div>
-         
-            </div>
-        )
-    }
+      const {classes} = this.props;
+      return(
+        <div className="MainClass">
+          <Typography variant="display3" gutterBottom position="sticky">My Tasks</Typography>
+          <TodoItems entries = {this.state.items}
+          delete={this.deleteItem}
+          update={this.updateItem}
+            />
+          <div className="footer">
+            <InputTaker />
+            <Header />
+          </div>
+
+          <div id="divfix">
+            <Button variant="contained" onClick={this.handleOpen} mini color="primary" id="rounded" >
+              Add a new task
+              <AddIcon />
+            </Button>
+            <Modal
+                aria-labelledby="simple-modal-title"
+                open={this.state.open}
+                onClose={this.handleClose}
+              >
+                <div style={getModalStyle()} className={classes.paper}>
+                  <Typography variant="title" id="modal-title">Text in a modal</Typography>
+                 
+                  </div>
+            </Modal>           
+          </div>
+          
+        </div>
+        
+      )}
 }
-export default App;
+const SimpleModalWrapped = withStyles(styles)(App);
+export default SimpleModalWrapped;
